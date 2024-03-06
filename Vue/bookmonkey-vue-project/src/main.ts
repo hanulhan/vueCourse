@@ -1,11 +1,12 @@
 
 import { createApp } from 'vue'
-import App from '@/App.vue'
+import router from './router'
+import App from './App.vue'
 
-//import "vue-picocss/css/pico.min.css";
-
-const app= createApp(App).mount('#app')
+const app= createApp(App)
 
 //app.$.appContext.
-
 //console.log(app);
+
+app.use(router)
+app.mount('#app')

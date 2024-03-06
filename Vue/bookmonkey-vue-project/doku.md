@@ -61,16 +61,16 @@ v-on directive to listen to DOM events
 Das Event obj wird automatisch übergeben
 
     <form @submit.prevent="onSubmit"></form>
-Hier soll die Seite nicht neu geladen werden, wie das früher bewi Forms war
+Hier soll die Seite nicht neu geladen werden, wie das früher bewi Forms war.
 Wir wollen die DAten selber versenden.
 
 
-##vite ist ein Build-Server
+## vite ist ein Build-Server
 in main.ts wird mit "createApp" festgelegt, wor der Startpunkt ist.
 SFC - Alles was zusammengehört bleibt in einer Datei
 
 Mit reactive/ref wird Vue mitgeteilt, dass es die Daten beobachten soll
-Um auf den Wert zuzugreifen braucht man im scriptTeil ".value"
+Um auf den Wert zuzugreifen braucht man im scriptTeil ".value".
 Im "template-Teil" braucht man .value nicht.
 
 
@@ -120,3 +120,47 @@ Kein Import notwendig
 Mit Props kann man jetzt Sachen in die Komponente hineingeben
 
 # Component events
+
+
+# Slots
+    v-slot:after
+  Abgekürzt:
+    #after
+
+ToDo: Übung Slots
+
+
+# Style
+css style gilt für alle Komponenten. Wird aus der Komponente herausgezogen
+
+Wenn css nur für dieses Komponent verwendet werden soll --> 
+    <style scoped> 
+
+    .red {
+      color: red
+    }
+
+# Dynamischer Style  
+    v-bind
+    <div v-bind:class="{active: isActive}"></div>
+
+Class Attribute sind auch für vue-Komponenten möglich
+
+
+# Composable
+Code der wiederverwendet werden soll
+Benennung use-<...>.(ts|js)
+
+    export function useMouse
+
+Darf nur auf oberster Ebene in einem KOmponent verwendet werden und nicht in einer Funktion
+
+
+# Vue Router 4
+
+Wie definieren wir neue Routen?
+
+
+RouterView bestimmt wo der Kontent hin kommt
+1. url im browser
+2. router sucht den Pfad. Wenn es ihn gibt weiß er dass es die BookList gibt. --> RouterView

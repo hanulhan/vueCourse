@@ -37,26 +37,19 @@
 
 type NavItem = {
   label: string;
-  link: string;
+  routeName : string;
 }
 
 const navigation = ref<NavItem[]>([{
-  label: 'Books', link: '/books',
+  label: 'Books', routeName : 'home',
 }, {
-  label: 'About', link: '/about',
-}, {
-  label: 'Login', link: '/login'
+  label: 'About', routeName : 'about',
 }])
 
 
 // 5. Direktiven
 import logo from '../assets/img_girl.jpg'
-import {computed, reactive, ref} from "vue";
-
-interface BildType {
-  url: string,
-  titel: string
-}
+import {computed,  ref} from "vue";
 
 const titel = ref('Girl');
 
@@ -72,11 +65,6 @@ const titel = ref('Girl');
 const isVisible = ref(true);
 
 
-
-
-// v-for
-const items = ref([{message: 'Foo'}, {message: 'Bar'}]);
-
 const applicationName = ref('Bookmonkey API');
 const transformedApplicationName = computed(() => applicationName.value.toLowerCase())
 
@@ -87,22 +75,23 @@ const transformedApplicationName = computed(() => applicationName.value.toLowerC
     <b>{{ applicationName.toUpperCase()}}</b>
     <br>
     <b>{{ transformedApplicationName}}</b>
-  <!--  <h1>{{ msg }}</h1>-->
   <br>
   <img v-bind:src="logo" :alt="titel" width="100" height="200">
 
   <ul>
-    <li><a href="#">{{ navigation[0].label }}</a></li>
-    <li><a href="#">{{ navigation[1].label }}</a></li>
-    <li><a href="#" role="button">{{ navigation[2].label }}</a></li>
-  </ul>
-  <ul>
-    <li v-for="item in items" :key="item.message">
-      {{ item.message }}
+    <li v-for="item in navigation" :key="item.routeName">
+      <RouterLink :to="{ name: item.routeName }" exact-active-class="is-active">{{ item.label }}</RouterLink>
     </li>
   </ul>
 
   <h1 v-if="isVisible">Hello there</h1>
 </template>
 
-
+<style>
+.is-active {
+  color: white;
+  background-color: var(--primary);
+  padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
+  border-radius: var(--border-radius);
+}
+</style>

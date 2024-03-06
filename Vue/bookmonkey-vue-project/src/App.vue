@@ -4,7 +4,8 @@
 
 
 import AppNavigation from "./components/AppNavigation.vue";
-import BookList from "@/components/BookList.vue";
+
+import BookList from "@/pages/BookList.vue";
 
 
 </script>
@@ -12,7 +13,7 @@ import BookList from "@/components/BookList.vue";
 
 <template>
   <AppNavigation />
-  <BookList />
+  <RouterView />
 </template>
 
 

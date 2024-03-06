@@ -1,6 +1,6 @@
 import type {Book} from '@/components/Book'
 
-export const Books: Book[] = [
+export const bookData: Book[] = [
   {
     "id": "1001606140805",
     "title": "Java Web Scraping Handbook",

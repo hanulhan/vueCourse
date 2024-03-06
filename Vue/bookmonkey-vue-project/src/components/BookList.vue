@@ -1,27 +1,15 @@
 <script setup lang="ts">
+import type {Book} from '@/components/Book'
+//import type {Books} from '@/components/Books'
 
 
-import {ref} from "vue";
+import {computed, ref} from "vue";
 
-// das interface kann in eine neue DAtei Book.ts
-type BookType = {
-  id: string;
-  title: string;
-  subtitle: string;
-  isbn: string;
-  abstract: string;
-  author: string;
-  publisher: string;
-  price: string;
-  numPages: number;
-  cover: string;
-  userId: number;
-}
 
-const books = ref<BookType[]>([]);
+const books = ref<Book[]>([]);
 const isLoaded = ref(false);
 
-function showBooks() {
+function onClick() {
   books.value = [
     {
       "id": "1001606140805",
@@ -78,16 +66,23 @@ function showBooks() {
 
   ]
 
-  isLoaded= true;
+  isLoaded.value = true;
 
-)
+}
 
+const filteredBooks = computed(() => books.value.filter((book) => book.title.includes(userInput.value)))
+const userInput = ref('');
 
 </script>
 
 
 <template>
-  <button @click="showBooks"></button>
+  <button @click="onClick"></button>
+
+  <div v-if="isLoaded">
+    <label for="search">Search</label>
+    <input type="search" id="search" name="search" placeholder="Book title" v-model="userInput">
+  </div>
 
   <table role="grid">
     <thead>
@@ -97,7 +92,7 @@ function showBooks() {
     </tr>
     </thead>
     <tbody>
-    <tr v-for="book in books" :key="book.isbn">
+    <tr v-for="book in filteredBooks" :key="book.isbn">
       <template v-if="book.numPages > 300">
         <td>{{ book.isbn }}</td>
         <td>{{ book.title }}</td>
@@ -105,5 +100,9 @@ function showBooks() {
     </tr>
     </tbody>
   </table>
+  <button @click.once="onClick" :disabled="isLoaded">Load Books</button>
 </template>
 
+<style>
+
+</style>

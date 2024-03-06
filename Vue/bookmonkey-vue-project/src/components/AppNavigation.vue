@@ -51,7 +51,7 @@ const navigation = ref<NavItem[]>([{
 
 // 5. Direktiven
 import logo from '../assets/img_girl.jpg'
-import {reactive, ref} from "vue";
+import {computed, reactive, ref} from "vue";
 
 interface BildType {
   url: string,
@@ -72,18 +72,23 @@ const titel = ref('Girl');
 const isVisible = ref(true);
 
 
-//isVisible.value=false;
 
 
 // v-for
 const items = ref([{message: 'Foo'}, {message: 'Bar'}]);
 
+const applicationName = ref('Bookmonkey API');
+const transformedApplicationName = computed(() => applicationName.value.toLowerCase())
+
 </script>
 
 
 <template>
-  <!--  <b>{{ applicationName.toUpperCase()}}</b>-->
+    <b>{{ applicationName.toUpperCase()}}</b>
+    <br>
+    <b>{{ transformedApplicationName}}</b>
   <!--  <h1>{{ msg }}</h1>-->
+  <br>
   <img v-bind:src="logo" :alt="titel" width="200" height="300">
 
   <ul>

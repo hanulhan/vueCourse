@@ -89,7 +89,7 @@ const transformedApplicationName = computed(() => applicationName.value.toLowerC
     <b>{{ transformedApplicationName}}</b>
   <!--  <h1>{{ msg }}</h1>-->
   <br>
-  <img v-bind:src="logo" :alt="titel" width="200" height="300">
+  <img v-bind:src="logo" :alt="titel" width="100" height="200">
 
   <ul>
     <li><a href="#">{{ navigation[0].label }}</a></li>

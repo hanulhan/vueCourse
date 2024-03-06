@@ -103,3 +103,20 @@ Jedesmal wenn sich der Wert ändert, wird eine Callback aufgerufen mit dem alten
 kombiniert WAtcher und 
 Seiteneffekte sind erlaubt
 sammeln von Dependencies
+
+
+# Props
+Eine Komponente kann nur mit ihrer Mutter-Komponente kommunizieren
+werden in CamelCase geschrieben
+    const props = defineProps(['bookTitle])
+    console.log(props.bookTitle)
+Kein Import notwendig
+
+    const idScript=3
+    <template>
+       <BookEntry :isbn="book.isbn" :title="book.title">
+    </template>
+
+Mit Props kann man jetzt Sachen in die Komponente hineingeben
+
+# Component events

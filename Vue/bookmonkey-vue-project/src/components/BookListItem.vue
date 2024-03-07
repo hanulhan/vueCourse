@@ -1,47 +1,46 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+import type {Book} from "@/components/Book";
+import "vue-picocss/css/pico.min.css"
 
 
-// Besser mit Omit Properties aus
-// const props = defineProps({
-//   title: {
-//     type: String,
-//     required: true
-//   },
-//   isbn: {
-//     type: String,
-//     required: true
-//   },
-//   numPages: Number
-// })
 type Props = {
-  title: string;
-  isbn: string;
-  numPages?: number;
-  cover?: string;
+  title: Book['title'];
+  isbn: Book['isbn'];
+  numPages?: Book['numPages'];
+  cover?: Book['cover'];
   read?: boolean;
 }
 
 defineProps<Props>()
 
-
 const emit = defineEmits(['read'])
 
 function readBook() {
+  closeDialog()
   emit('read')
 }
 
+const dialogIsVisible = ref(false)
+
+function openDialog() {
+  dialogIsVisible.value = true
+}
+
+function closeDialog() {
+  dialogIsVisible.value = false
+}
 </script>
 
 <template>
-  <slot>
-    Default content
-  </slot>
   <tr>
-    <td>{{ isbn }}</td>
+    <td>
+      <RouterLink :to="{ name: 'book-detail', params: { isbn } }">{{ isbn }}</RouterLink>
+    </td>
     <td>{{ title }}</td>
     <td>{{ numPages }}</td>
     <td><img :src="cover" width="100" /></td>
-    <td><button @click="readBook" :disabled="read">
+    <td><button @click="openDialog" :disabled="read">
       <span v-if="read">✅</span>
       <span v-else>Read</span>
     </button></td>

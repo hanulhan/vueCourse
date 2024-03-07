@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BookListItem from '../components/BookListItem.vue'
 import { useBooks } from '../composables/books';
+import "vue-picocss/css/pico.min.css"
 
 const { books, userInput } = useBooks('https://bookmonkey-read-only.onrender.com/books')
 
